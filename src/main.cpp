@@ -61,11 +61,8 @@ void loop()
     static int led = 0;
     if (flag)
     {
-        led ^= 1; // toggle
-        digitalWrite(ON_BOARD_LED, led);
         flag = 0; 
         printf("Elektronik und Technische Informatik ist super stark!!!");
-
     }
 
     if (Serial.available() > 0) 
@@ -74,8 +71,9 @@ void loop()
         if (data.indexOf('x') != -1)
         {
             // x received
-            flag = TRUE;
             printf("\nx received!\n");
+            led ^= 1; // toggle
+            digitalWrite(ON_BOARD_LED, led);
         }
 
     }
